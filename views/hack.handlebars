@@ -1,12 +1,13 @@
 <h1>Hello this is the hack I am currently working on</h1>
 <form action="/send" method="post">
-  	say something:<br>
-  	<input type="text" name="submitted_message" value="iguana"><br>
+  	Simulate outgoing sms:<br>
+  	<input type="text" name="to" value="+14133208380"><br>
+  	<input type="text" name="msg" placeholder="iguana"><br>
   	<input type="submit" value="Submit">
 </form> 
 <br>
 <form action="/receive" method="post">
 	<input type="text" name="from" value="+14133208380"><br>
 	<input type="text" name="msg" placeholder="message"><br>
-  	<input type="submit" value="Simulate incoming message">
+  	<input type="submit" value="Simulate incoming sms">
 </form> 
