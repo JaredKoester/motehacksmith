@@ -57,7 +57,7 @@ app.post('/receive', function(req, res) {
 	var eligible = eligibility.number;
 	if(eligible){
 		console.log("you are eligible!");
-		cast_vote(eligible.election_name, eligible.voter_name, vote,  geoinfo);
+		cast_vote(eligible.election_name, eligible.voter_name, number, vote, req.body.city, req.body.state, req.body.zip);
 	}
     res.redirect('/');
 });
@@ -66,12 +66,18 @@ app.listen(process.env.PORT || 3000, function(){
 	console.log("Express started");
 });
 
-function cast_vote(election_name, voter_name, vote, geoinfo){
-	firebase.child(election_name).child("voters").child(voter_name).update({vote: vote});
-	//firebase.child(election_name).child(voter_name).update(geoinfo);
+function cast_vote(election_name, name, number, vote, city, state, zip){
+	firebase.child(election_name).child("voters").child(name).update({vote: vote, city: city, state: state, zip: zip});
+	firebase.child(election_name).child("candidates").child(vote).child(number).update({vote: vote, city: city, state: state, zip: zip})
+	if(prev.number){
+		console.log("removal attempted: "+prev.number);
+		firebase.child(election_name).child("candidates").child(prev.number).child(number).remove();
+	}
+	prev.number = vote;
 }
 
 var eligibility = {};
+var prev = {};
 
 function pend_election(name){
 	console.log("pending: "+name);
@@ -81,7 +87,7 @@ function pend_election(name){
 			console.log("starting: "+name);
 			open_election(name);
 		}else{
-			//close_election(name);
+			close_election(name);
 		}
 	})
 }
@@ -94,7 +100,12 @@ function open_election(election_name){
 	firebase.child(election_name).child("voters").on("value", function(snapshot){
 		snapshot.forEach(function(child){
 			eligibility.number = {election_name: election_name, voter_name: child.key()}
-		})
-	})
+		});
+	});
 	console.log(eligibility);
+}
+
+function close_election(election_name){
+	console.log("closed: "+election_name);
+	eligibility = {};
 }
