@@ -1,3 +1,6 @@
+var Firebase = require("firebase");
+var firebase = new Firebase("https://motehacksmith.firebaseio.com/");
+
 var express = require('express');
 var handlebars = require('express-handlebars');
 
@@ -42,6 +45,12 @@ app.post('/send', function(req, res) {
 	});
 	res.redirect('/');
 });
+
+app.post('/receive', function(req, res) {
+    firebase.set(req.body.msg);
+    console.log(req.body.msg);
+    res.redirect('/');
+})
 
 app.listen(process.env.PORT || 3000, function(){
 	console.log("Express started");
