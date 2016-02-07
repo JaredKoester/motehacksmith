@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/JaredKoester/motehacksmith#readme",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "request": "^2.69.0"
