@@ -47,14 +47,9 @@ app.post('/send', function(req, res) {
 });
 
 app.post('/receive', function(req, res) {
-    var number = req.body.from;
-    var msg = req.body.msg;
-    console.log(msg);
-    voterref = firebase.child("coder of the week").child("voters").child(number);
-    voterref.update({
-    	vote: msg
-    });
-
+	var number = req.body.from;
+    logref = firebase.child("coder of the week").child("voters").child(number).child('log');
+    logref.push(req.body);
     res.redirect('/');
 })
 
