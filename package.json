@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Jared Koester",
   "main": "index.js",
+  "engines": {
+    "node": "0.10.x"
+  },
   "scripts": {
     "test": "test"
   },
@@ -18,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/JaredKoester/motehacksmith/issues"
   },
-  "homepage": "https://github.com/JaredKoester/motehacksmith#readme"
+  "homepage": "https://github.com/JaredKoester/motehacksmith#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "request": "^2.69.0"
+  }
 }
