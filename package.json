@@ -1,0 +1,22 @@
+{
+  "name": "motehacksmith",
+  "version": "1.0.0",
+  "description": "Jared Koester",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaredKoester/motehacksmith.git"
+  },
+  "keywords": [
+    "voting"
+  ],
+  "author": "Jared Koester",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JaredKoester/motehacksmith/issues"
+  },
+  "homepage": "https://github.com/JaredKoester/motehacksmith#readme"
+}
