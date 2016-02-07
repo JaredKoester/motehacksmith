@@ -1,13 +1,10 @@
-//Firebase:
 var Firebase = require("firebase");
 var firebase = new Firebase("https://motehacksmith.firebaseio.com/");
 
-//Express:
 var express = require('express');
-var app = express();
-
-//Handlebars:
 var handlebars = require('express-handlebars');
+
+var app = express();
 var view = handlebars.create({ defaultLayout: 'main' });
 
 // Body Parser:
@@ -17,17 +14,6 @@ app.use(bodyParser.json());
 
 //request:
 var request = require('request');
-
-// Session Support:
-var session    = require('express-session');
-app.use(session({
-  secret: 'octocat',
-  // Both of the options below are deprecated, but should be false
-  // until removed from the library - sometimes, the reality of
-  // libraries can be rather annoying!
-  saveUninitialized: false, // does not save uninitialized session.
-  resave: false             // does not save session if not modified.
-}));
 
 
 app.engine('handlebars', view.engine);
